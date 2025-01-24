@@ -1,11 +1,15 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-#
-User.create!(email_address: "a@a.a", password: "123", password_confirmation: "123")
+# Create a user
+user = User.create!(email_address: "test@example.com", password_digest: "password")
+
+# Create a balancing for the user
+balancing = Balancing.create!(user_id: user.id, total_value: 1000.00)
+
+# Create a balancing asset associated with the balancing
+BalancingAsset.create!(
+  balancing_id: balancing.id,
+  asset_type: "Stock",
+  current_value: 500.00,
+  current_percentage: 50.00,
+  desired_percentage: 60.00,
+  updated_value: 600.00
+)
