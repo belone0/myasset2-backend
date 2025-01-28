@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "http://localhost:5173", "http://144.22.172.99:81" # Update with your Vue app's URL
+    origins "http://localhost:5173", "http://144.22.172.99:*" # Update with your Vue app's URL
     resource "*",
              headers: :any,
              methods: [ :get, :post, :put, :patch, :delete, :options, :head ],
